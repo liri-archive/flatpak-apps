@@ -1,0 +1,33 @@
+{
+    "id": "org.hawaiios.systempreferences",
+    "branch": "master",
+    "runtime": "org.hawaiios.Platform",
+    "runtime-version": "master",
+    "sdk": "org.hawaiios.Sdk",
+    "command": "hawaii-system-preferences",
+    "tags": [ "nightly" ],
+    "desktop-file-name-prefix": "(Nightly) ",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--filesystem=host"
+    ],
+    "modules": [
+        {
+            "cmake": true,
+            "config-opts": [
+                "-DKDE_INSTALL_LIBDIR=lib"
+            ],
+            "name": "hawaii-terminal",
+            "name": "hawaii-system-preferences",
+            "post-install": [],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "git://github.com/hawaii-desktop/hawaii-system-preferences"
+                }
+            ]
+        }
+    ]
+}

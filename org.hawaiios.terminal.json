@@ -1,0 +1,35 @@
+{
+    "id": "org.hawaiios.terminal",
+    "branch": "master",
+    "runtime": "org.hawaiios.Platform",
+    "runtime-version": "master",
+    "sdk": "org.hawaiios.Sdk",
+    "cleanup-commands": [
+        "rm -f /app/share/appdata/*"
+    ],
+    "command": "hawaii-terminal",
+    "tags": [ "nightly" ],
+    "desktop-file-name-prefix": "(Nightly) ",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--filesystem=host"
+    ],
+    "modules": [
+        {
+            "cmake": true,
+            "config-opts": [
+                "-DKDE_INSTALL_LIBDIR=lib"
+            ],
+            "name": "hawaii-terminal",
+            "post-install": [],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "git://github.com/hawaii-desktop/hawaii-terminal"
+                }
+            ]
+        }
+    ]
+}

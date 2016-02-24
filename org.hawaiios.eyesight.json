@@ -1,0 +1,37 @@
+{
+    "id": "org.hawaiios.eyesight",
+    "branch": "master",
+    "runtime": "org.hawaiios.Platform",
+    "runtime-version": "master",
+    "sdk": "org.hawaiios.Sdk",
+    "cleanup-commands": [
+        "rm -f /app/share/appdata/*"
+    ],
+    "command": "eyesight",
+    "tags": [ "nightly" ],
+    "desktop-file-name-prefix": "(Nightly) ",
+    "rename-desktop-file": "eyesight.desktop",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--filesystem=host"
+    ],
+    "modules": [
+        {
+            "cmake": true,
+            "config-opts": [
+                "-DKDE_INSTALL_LIBDIR=lib"
+            ],
+            "name": "eyesight",
+            "post-install": [],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "git://github.com/hawaii-desktop/eyesight",
+                    "branch": "0.1"
+                }
+            ]
+        }
+    ]
+}
