@@ -1,0 +1,60 @@
+{
+    "id": "io.github.communi",
+    "branch": "master",
+    "runtime": "org.hawaiios.Platform",
+    "runtime-version": "master",
+    "sdk": "org.hawaiios.Sdk",
+    "command": "communi",
+    "tags": [ "nightly" ],
+    "desktop-file-name-prefix": "(Nightly) ",
+    "rename-desktop-file": "communi.desktop",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--filesystem=host"
+    ],
+    "modules": [
+        {
+            "cleanup-platform": [ "/features" ],
+            "config-opts": [
+                "-nomake", "tests",
+                "-nomake", "examples"
+            ],
+            "name": "libcommuni",
+            "post-install": [],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "git://github.com/communi/libcommuni"
+                }
+            ]
+        },
+        {
+            "build-options": {
+                "env": {
+                    "QMAKEFEATURES": "/app/features",
+                    "COMMUNI_INSTALL_PREFIX": "/app"
+                }
+            },
+            "name": "communi-desktop",
+            "post-install": [
+                "install -d -m 755 /app/share/applications",
+                "install -m 644 communi.desktop /app/share/applications"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "git://github.com/communi/communi-desktop"
+                },
+                {
+                    "commands": [
+                        "qmake"
+                    ],
+                    "dest-filename": "configure",
+                    "type": "script"
+                }
+            ]
+        }
+    ]
+}

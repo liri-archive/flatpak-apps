@@ -1,5 +1,5 @@
 #all: org.hawaiios.systempreferences.app
-all: org.hawaiios.terminal.app org.hawaiios.eyesight.app
+all: org.hawaiios.terminal.app org.hawaiios.eyesight.app io.github.communi.app
 
 %.app: %.json
 	rm -rf app
