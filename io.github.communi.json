@@ -15,6 +15,7 @@
         "--filesystem=host",
         "--talk-name=org.kde.StatusNotifierWatcher",
         "--talk-name=org.gnome.ScreenSaver",
+        "--talk-name=org.freedesktop.ScreenSaver",
         "--talk-name=com.canonical.Unity.LauncherEntry"
     ],
     "modules": [
