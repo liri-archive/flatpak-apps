@@ -1,9 +1,9 @@
 {
     "id": "io.github.communi",
     "branch": "master",
-    "runtime": "org.hawaiios.Platform",
+    "runtime": "io.liri.Platform",
     "runtime-version": "master",
-    "sdk": "org.hawaiios.Sdk",
+    "sdk": "io.liri.Sdk",
     "command": "communi",
     "tags": [ "nightly" ],
     "desktop-file-name-prefix": "(Nightly) ",
