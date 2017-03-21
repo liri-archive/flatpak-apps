@@ -8,8 +8,7 @@ $(REPO)/config:
 	ostree init --mode=archive-z2 --repo=$(REPO)
 
 %.app: %.json
-	rm -rf app
-	flatpak-builder --ccache --repo=$(REPO) --subject="Build of $<, `date`" ${EXPORT_ARGS} app $<
+	flatpak-builder --force-clean --ccache --repo=$(REPO) --subject="Build of $<, `date`" ${EXPORT_ARGS} app $<
 
 export:
 	flatpak build-update-repo --prune --prune-depth=20 $(REPO) ${EXPORT_ARGS}
