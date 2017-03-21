@@ -30,3 +30,5 @@ check:
 
 clean:
 	@rm -rf $(TMP) .flatpak-builder
+
+.PHONY: export remotes deps update-deps check clean
