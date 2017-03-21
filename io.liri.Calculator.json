@@ -1,0 +1,38 @@
+{
+    "app-id": "io.liri.Calculator",
+    "branch": "master",
+    "runtime": "io.liri.Platform",
+    "runtime-version": "master",
+    "sdk": "io.liri.Sdk",
+    "command": "liri-calculator",
+    "tags": [ "nightly" ],
+    "desktop-file-name-suffix": " (Nightly)",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland"
+    ],
+    "build-options": {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g"
+    },
+    "modules": [
+        {
+            "name": "calculator",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "git://github.com/lirios/calculator.git",
+                    "branch": "master"
+                },
+                {
+                    "commands": [
+                        "qmake LIRI_INSTALL_PREFIX=/app"
+                    ],
+                    "dest-filename": "configure",
+                    "type": "script"
+                }
+            ]
+        }
+    ]
+}
