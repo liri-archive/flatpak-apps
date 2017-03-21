@@ -1,5 +1,6 @@
 REPO = repo
 ARGS = "--user"
+LIRI_SDK_VERSION = "master"
 
 all: $(REPO)/config $(foreach file, $(wildcard io.liri.*.json), $(subst .json,.app,$(file)))
 
@@ -17,8 +18,8 @@ remotes:
 	flatpak remote-add $(ARGS) liri --from https://files.liri.io/flatpak/liri.flatpakrepo --if-not-exists
 
 deps:
-	flatpak install $(ARGS) liri io.liri.Platform; true
-	flatpak install $(ARGS) liri io.liri.Sdk; true
+	flatpak install $(ARGS) liri io.liri.Platform $(LIRI_SDK_VERSION); true
+	flatpak install $(ARGS) liri io.liri.Sdk $(LIRI_SDK_VERSION); true
 
 check:
 	@json-glib-validate *.json
