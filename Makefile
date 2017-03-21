@@ -21,6 +21,10 @@ deps:
 	flatpak install $(ARGS) liri io.liri.Platform $(LIRI_SDK_VERSION); true
 	flatpak install $(ARGS) liri io.liri.Sdk $(LIRI_SDK_VERSION); true
 
+update-deps:
+	flatpak update $(ARGS) --runtime io.liri.Platform $(LIRI_SDK_VERSION); true
+	flatpak update $(ARGS) --runtime io.liri.Sdk $(LIRI_SDK_VERSION); true
+
 check:
 	@json-glib-validate *.json
 
