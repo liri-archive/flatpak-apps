@@ -1,0 +1,38 @@
+{
+    "app-id": "io.liri.Text",
+    "branch": "master",
+    "runtime": "io.liri.Platform",
+    "runtime-version": "master",
+    "sdk": "io.liri.Sdk",
+    "command": "liri-text",
+    "tags": [ "nightly" ],
+    "desktop-file-name-suffix": " (Nightly)",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland"
+    ],
+    "build-options": {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g"
+    },
+    "modules": [
+        {
+            "name": "text",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "git://github.com/lirios/text.git",
+                    "branch": "develop"
+                },
+                {
+                    "commands": [
+                        "qmake LIRI_INSTALL_PREFIX=/app"
+                    ],
+                    "dest-filename": "configure",
+                    "type": "script"
+                }
+            ]
+        }
+    ]
+}
