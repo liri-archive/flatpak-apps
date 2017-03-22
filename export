@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+remote=liri@liri.io
+basedir=/srv/www/repo.liri.io/flatpak
+
+#make EXPORT_ARGS="--generate-static-deltas" all export
+make all export
+
+./rsync-repos --src repo/ --dest ${remote}:${basedir}/apps/
+rsync -avz --delete --progress *.flatpakref ${remote}:${basedir}
