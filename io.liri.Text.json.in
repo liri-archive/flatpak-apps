@@ -1,8 +1,8 @@
 {
     "app-id": "io.liri.Text",
-    "branch": "master",
+    "branch": "@@APP_BRANCH@@",
     "runtime": "io.liri.Platform",
-    "runtime-version": "master",
+    "runtime-version": "@@LIRI_SDK_VERSION@@",
     "sdk": "io.liri.Sdk",
     "command": "liri-text",
     "tags": [ "nightly" ],
@@ -24,7 +24,7 @@
                 {
                     "type": "git",
                     "url": "git://github.com/lirios/text.git",
-                    "branch": "develop"
+                    "branch": "@@APP_BRANCH@@"
                 },
                 {
                     "commands": [

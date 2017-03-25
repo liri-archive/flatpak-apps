@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+#
+# This file is part of Liri.
+#
+# Copyright (C) 2017 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+#
+# $BEGIN_LICENSE:GPL3+$
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# $END_LICENSE$
+#
+
+import os
+import sys
+import argparse
+import yaml
+import datetime
+from builder import command, prepare
+
+
+def install_prerequisites(sdk_version):
+    """
+    Install the Liri platform and SDK.
+    :param sdk_version: SDK version.
+    """
+    print('Installing Liri platform and SDK {}...'.format(sdk_version))
+    command(['flatpak', 'remote-add', '--user', 'liri',
+             '--from', 'https://repo.liri.io/flatpak/liri.flatpakrepo',
+             '--if-not-exists'])
+    command(['flatpak', 'install', '--user', 'liri', 'io.liri.Platform', sdk_version])
+    command(['flatpak', 'install', '--user', 'liri', 'io.liri.Sdk', sdk_version])
+    command(['flatpak', 'update', '--user', '--runtime', 'io.liri.Platform', sdk_version])
+    command(['flatpak', 'update', '--user', '--runtime', 'io.liri.Sdk', sdk_version])
+
+
+def build_app(metadata, args):
+    """
+    Build an app.
+    :param metadata: App metadata.
+    :param args: Command line arguments.
+    """
+    json_filename = metadata['name'] + '.json'
+    prepare('{}.json.in'.format(metadata['name']), json_filename, metadata)
+    subject = 'Build of {}, {}'.format(metadata['name'], datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S'))
+    command(['flatpak-builder', '--force-clean', '--ccache',
+             '--repo=' + args.repo, '--subject="%s"' % subject,
+             '--gpg-sign=' + args.gpg_key, 'app', json_filename], echo=True)
+    os.unlink(json_filename)
+
+
+def export(args):
+    """
+    Export OSTree repository.
+    :param args: Command line arguments.
+    """
+    command(['flatpak', 'build-update-repo', '--prune', '--prune-depth=20',
+             args.repo, '--gpg-sign=' + args.gpg_key])
+
+
+if __name__ == '__main__':
+    import copy
+    import shutil
+
+    ARCH = command(['flatpak', '--default-arch']).decode('utf-8').strip()
+
+    # Parse command line arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--arch', help='Architecture (default {})'.format(ARCH),
+                        action='store', default=ARCH)
+    parser.add_argument('--repo', help='OSTree repository',
+                        action='store', default='repo')
+    parser.add_argument('--gpg-key', help='GPG key to sign commits',
+                        action='store', default=None)
+    parser.add_argument('--export', help='Export repository',
+                        action='store_true')
+    args = parser.parse_args()
+
+    # Create the OSTree repository
+    if not os.path.exists(os.path.join(args.repo, 'config')):
+        command(['ostree', 'init', '--mode=archive-z2', '--repo=' + args.repo])
+
+    # Build apps
+    with open('.metadata.yml', 'r') as f:
+        metadata = yaml.load(f)
+        if args.gpg_key is None:
+            args.gpg_key = metadata['gpg-key']
+        install_prerequisites(metadata['sdk-version'])
+        for app in metadata['apps']:
+            app_metadata = copy.deepcopy(app)
+            app_metadata.update({'sdk-version': metadata['sdk-version']})
+            build_app(app_metadata, args)
+    if args.export:
+        export(args)
+
+    # Clean up
+    if os.path.exists('app'):
+        shutil.rmtree('app')

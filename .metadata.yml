@@ -1,0 +1,7 @@
+gpg-key: 71B9937D
+sdk-version: develop
+apps:
+- name: io.liri.Calculator
+  version: develop
+- name: io.liri.Text
+  version: develop

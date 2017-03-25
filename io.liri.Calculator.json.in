@@ -1,8 +1,8 @@
 {
     "app-id": "io.liri.Calculator",
-    "branch": "master",
+    "branch": "@@APP_BRANCH@@",
     "runtime": "io.liri.Platform",
-    "runtime-version": "master",
+    "runtime-version": "@@LIRI_SDK_VERSION@@",
     "sdk": "io.liri.Sdk",
     "command": "liri-calculator",
     "tags": [ "nightly" ],
@@ -23,7 +23,7 @@
                 {
                     "type": "git",
                     "url": "git://github.com/lirios/calculator.git",
-                    "branch": "master"
+                    "branch": "@@APP_BRANCH@@"
                 },
                 {
                     "commands": [
