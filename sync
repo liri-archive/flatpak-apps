@@ -57,4 +57,4 @@ if __name__ == '__main__':
             app_metadata = copy.deepcopy(app)
             app_metadata.update({'sdk-version': metadata['sdk-version']})
             copy_flatpakref(app_metadata)
-        command(['./rsync-repos', '--src', args.repo, '--dest', os.path.join(URL, 'apps')])
+        command(['./rsync-repos', '--src', args.repo, '--dest', os.path.join(URL, 'apps/')])
