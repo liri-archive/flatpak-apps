@@ -1,0 +1,55 @@
+{
+    "app-id": "io.liri.Browser",
+    "branch": "@@APP_BRANCH@@",
+    "runtime": "io.liri.Platform",
+    "runtime-version": "@@LIRI_SDK_VERSION@@",
+    "sdk": "io.liri.Sdk",
+    "command": "liri-browser",
+    "tags": [ "nightly" ],
+    "desktop-file-name-suffix": " (Nightly)",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland"
+    ],
+    "build-options": {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g"
+    },
+    "modules": [
+        {
+            "name": "slime-engine",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/tim-sueberkrueb/slime-engine.git",
+                    "branch": "master"
+                },
+                {
+                    "commands": [
+                        "qmake PREFIX=/app/lib/qml"
+                    ],
+                    "dest-filename": "configure",
+                    "type": "script"
+                }
+            ]
+        },
+        {
+            "name": "browser",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "git://github.com/lirios/browser.git",
+                    "branch": "@@APP_BRANCH@@"
+                },
+                {
+                    "commands": [
+                        "qmake LIRI_INSTALL_PREFIX=/app CONFIG+=QTWEBENGINE_ENABLED"
+                    ],
+                    "dest-filename": "configure",
+                    "type": "script"
+                }
+            ]
+        }
+    ]
+}

@@ -5,3 +5,5 @@ apps:
   version: develop
 - name: io.liri.Text
   version: develop
+- name: io.liri.Browser
+  version: develop
