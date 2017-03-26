@@ -25,7 +25,7 @@ import sys
 import subprocess
 
 
-def command(cmd, echo=False):
+def command(cmd, echo=False, output=False):
     """
     Execute a command and return the output.
     :param cmd: List of command parameters.
@@ -33,7 +33,10 @@ def command(cmd, echo=False):
     """
     if echo:
         print('Executing: {}'.format(' '.join(cmd)))
-    return subprocess.run(cmd, stdout=subprocess.PIPE).stdout
+    out = subprocess.run(cmd, stdout=subprocess.PIPE).stdout
+    if output:
+        print(out.decode('utf-8').strip())
+    return out
 
 
 def prepare(src_filename, dst_filename, metadata):

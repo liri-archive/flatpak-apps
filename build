@@ -56,7 +56,7 @@ def build_app(metadata, args):
     subject = 'Build of {}, {}'.format(metadata['name'], datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S'))
     command(['flatpak-builder', '--force-clean', '--ccache',
              '--repo=' + args.repo, '--subject="%s"' % subject,
-             '--gpg-sign=' + args.gpg_key, 'app', json_filename], echo=True)
+             '--gpg-sign=' + args.gpg_key, 'app', json_filename], echo=True, output=True)
     os.unlink(json_filename)
 
 
