@@ -27,7 +27,7 @@ import sys
 import argparse
 import yaml
 import datetime
-from builder import command, prepare
+from builder import command, prepare, message
 
 
 def install_prerequisites(sdk_version):
@@ -35,7 +35,7 @@ def install_prerequisites(sdk_version):
     Install the Liri platform and SDK.
     :param sdk_version: SDK version.
     """
-    print('Installing Liri platform and SDK {}...'.format(sdk_version))
+    message('Installing Liri platform and SDK {}...'.format(sdk_version))
     command(['flatpak', 'remote-add', '--user', 'liri',
              '--from', 'https://repo.liri.io/flatpak/liri.flatpakrepo',
              '--if-not-exists'])

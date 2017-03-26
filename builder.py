@@ -25,6 +25,21 @@ import sys
 import subprocess
 
 
+class colors:
+    HEADER = '\033[95m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    BLUE = '\033[94m'
+    SUCCESS = '\033[92m'
+    WARNING = '\033[93m'
+    FAILURE = '\033[91m'
+    ENDCOLOR = '\033[0m'
+
+
+def message(msg):
+    print('{}=={} {}{}'.format(colors.BLUE, colors.ENDCOLOR + colors.BOLD, msg, colors.ENDCOLOR))
+
+
 def command(cmd, echo=False, output=False):
     """
     Execute a command and return the output.
@@ -32,7 +47,7 @@ def command(cmd, echo=False, output=False):
     :return: Output.
     """
     if echo:
-        print('Executing: {}'.format(' '.join(cmd)))
+        message('Executing: {}'.format(' '.join(cmd)))
     out = subprocess.run(cmd, stdout=subprocess.PIPE).stdout
     if output:
         print(out.decode('utf-8').strip())
