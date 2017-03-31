@@ -1,0 +1,35 @@
+{
+    "app-id": "io.liri.Files",
+    "branch": "@@APP_BRANCH@@",
+    "runtime": "io.liri.Platform",
+    "runtime-version": "@@LIRI_SDK_VERSION@@",
+    "sdk": "io.liri.Sdk",
+    "cleanup-commands": [
+        "rm -f /app/share/appdata/*"
+    ],
+    "command": "liri-files",
+    "tags": [ "nightly" ],
+    "desktop-file-name-suffix": " (Nightly)",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--filesystem=host"
+    ],
+    "modules": [
+        {
+            "name": "files",
+            "cmake": true,
+            "config-opts": [
+                "-DKDE_INSTALL_LIBDIR=lib"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "git://github.com/lirios/files.git",
+                    "branch": "@@APP_BRANCH@@"
+                }
+            ]
+        }
+    ]
+}

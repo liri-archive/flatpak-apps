@@ -7,3 +7,5 @@ apps:
   version: develop
 - name: io.liri.Browser
   version: develop
+- name: io.liri.Files
+  version: develop
