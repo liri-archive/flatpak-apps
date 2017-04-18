@@ -12,7 +12,8 @@
         "--socket=x11",
         "--socket=wayland",
         "--filesystem=home",
-        "--device=dri"
+        "--device=dri",
+        "--env=SESSION_MANAGER="
     ],
     "build-options": {
         "cflags": "-O2 -g",

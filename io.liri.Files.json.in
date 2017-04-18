@@ -14,7 +14,8 @@
         "--share=ipc",
         "--socket=x11",
         "--socket=wayland",
-        "--filesystem=host"
+        "--filesystem=host",
+        "--env=SESSION_MANAGER="
     ],
     "modules": [
         {
