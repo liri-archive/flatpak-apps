@@ -48,7 +48,7 @@ def command(cmd, echo=False, output=False):
     """
     if echo:
         message('Executing: {}'.format(' '.join(cmd)))
-    out = subprocess.run(cmd, stdout=subprocess.PIPE).stdout
+    out = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=sys.stdout.buffer).stdout
     if output:
         print(out.decode('utf-8').strip())
     return out
