@@ -5,8 +5,7 @@
     "runtime-version": "@@LIRI_SDK_VERSION@@",
     "sdk": "io.liri.Sdk",
     "command": "liri-calculator",
-    "tags": [ "nightly" ],
-    "desktop-file-name-suffix": " (Nightly)",
+    "tags": [ "stable" ],
     "finish-args": [
         "--share=ipc",
         "--socket=x11",

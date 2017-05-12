@@ -8,8 +8,7 @@
         "rm -f /app/share/appdata/*"
     ],
     "command": "liri-files",
-    "tags": [ "nightly" ],
-    "desktop-file-name-suffix": " (Nightly)",
+    "tags": [ "stable" ],
     "finish-args": [
         "--share=ipc",
         "--socket=x11",
