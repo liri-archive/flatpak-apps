@@ -2,5 +2,5 @@ gpg-key: 71B9937D
 sdk-version: develop
 apps:
 - name: io.liri.Calculator
-  tag: 1.0
+  tag: '1.0'
   version: stable
