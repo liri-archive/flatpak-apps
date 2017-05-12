@@ -27,7 +27,7 @@
                 {
                     "type": "git",
                     "url": "git://github.com/lirios/files.git",
-                    "branch": "@@APP_BRANCH@@"
+                    "branch": "@@GIT_TAG@@"
                 }
             ]
         }

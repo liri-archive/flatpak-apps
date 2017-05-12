@@ -63,12 +63,9 @@ def prepare(src_filename, dst_filename, metadata):
     :return: Path to the new file.
     """
     import tempfile
-    version = metadata['version']
-    if version.startswith('v'):
-        version = version[1:]
     with open(src_filename, 'r') as f:
         dst = open(dst_filename, 'w')
         for line in f:
-            s = line.replace(r'@@APP_BRANCH@@', version).replace(r'@@LIRI_SDK_VERSION@@', metadata['sdk-version'])
+            s = line.replace(r'@@APP_BRANCH@@', metadata['version']).replace(r'@@GIT_TAG@@', metadata['tag']).replace(r'@@LIRI_SDK_VERSION@@', metadata['sdk-version'])
             dst.write(s)
         dst.close()
