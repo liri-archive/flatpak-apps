@@ -2,10 +2,14 @@ gpg-key: 71B9937D
 sdk-version: develop
 apps:
 - name: io.liri.Calculator
-  version: develop
+  tag: develop
+  version: master
 - name: io.liri.Text
-  version: develop
+  tag: develop
+  version: master
 - name: io.liri.Browser
-  version: develop
+  tag: develop
+  version: master
 - name: io.liri.Files
-  version: develop
+  tag: develop
+  version: master

@@ -25,7 +25,7 @@
                 {
                     "type": "git",
                     "url": "git://github.com/lirios/text.git",
-                    "branch": "@@APP_BRANCH@@"
+                    "branch": "@@GIT_TAG@@"
                 },
                 {
                     "commands": [

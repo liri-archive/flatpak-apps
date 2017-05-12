@@ -43,7 +43,7 @@
                 {
                     "type": "git",
                     "url": "git://github.com/lirios/browser.git",
-                    "branch": "@@APP_BRANCH@@"
+                    "branch": "@@GIT_TAG@@"
                 },
                 {
                     "commands": [
