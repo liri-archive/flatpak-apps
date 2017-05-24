@@ -19,4 +19,4 @@ If you want to perform only a build and use the `repo` locally:
 
 ## Versioning
 
-Nightly builds result in the `develop` OSTree branch while stable builds are versioned.
+Nightly builds result in the `master` OSTree branch while stable builds are in the `stable` branch.
