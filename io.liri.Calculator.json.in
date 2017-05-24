@@ -15,10 +15,6 @@
         "--device=dri",
         "--env=SESSION_MANAGER="
     ],
-    "build-options": {
-        "cflags": "-O2 -g",
-        "cxxflags": "-O2 -g"
-    },
     "modules": [
         {
             "name": "calculator",
@@ -29,10 +25,15 @@
                     "branch": "@@GIT_TAG@@"
                 },
                 {
+                    "dest-filename": "actual-autogen.sh",
+                    "path": "qbs-autogen",
+                    "type": "file"
+                },
+                {
                     "commands": [
-                        "qmake LIRI_INSTALL_PREFIX=/app"
+                        "./actual-autogen.sh lirideployment.libDir:lib/qml"
                     ],
-                    "dest-filename": "configure",
+                    "dest-filename": "autogen.sh",
                     "type": "script"
                 }
             ]
