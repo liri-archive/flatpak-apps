@@ -1,5 +1,5 @@
 gpg-key: 71B9937D
-sdk-version: develop
+sdk-version: master
 apps:
 - name: io.liri.Calculator
   tag: develop
