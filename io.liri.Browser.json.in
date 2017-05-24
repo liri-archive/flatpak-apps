@@ -15,28 +15,7 @@
         "--filesystem=home",
         "--device=dri"
     ],
-    "build-options": {
-        "cflags": "-O2 -g",
-        "cxxflags": "-O2 -g"
-    },
     "modules": [
-        {
-            "name": "slime-engine",
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/tim-sueberkrueb/slime-engine.git",
-                    "branch": "master"
-                },
-                {
-                    "commands": [
-                        "qmake PREFIX=/app/lib/qml"
-                    ],
-                    "dest-filename": "configure",
-                    "type": "script"
-                }
-            ]
-        },
         {
             "name": "browser",
             "sources": [
@@ -46,10 +25,15 @@
                     "branch": "@@GIT_TAG@@"
                 },
                 {
+                    "dest-filename": "actual-autogen.sh",
+                    "path": "qbs-autogen",
+                    "type": "file"
+                },
+                {
                     "commands": [
-                        "qmake LIRI_INSTALL_PREFIX=/app CONFIG+=QTWEBENGINE_ENABLED"
+                        "./actual-autogen.sh lirideployment.libDir:lib/qml"
                     ],
-                    "dest-filename": "configure",
+                    "dest-filename": "autogen.sh",
                     "type": "script"
                 }
             ]
