@@ -36,7 +36,7 @@ def copy_flatpakref(metadata):
     :param metadata: App metadata.
     """
     for ver in ('stable', 'unstable'):
-        filename = '{}-{}.flatpakref'.format(metadata['name'], ver)
+        filename = 'flatpakref/{}-{}.flatpakref'.format(metadata['name'], ver)
         if os.path.exists(filename):
             print('Copy: {}'.format(filename))
             command(['scp', filename, URL])
