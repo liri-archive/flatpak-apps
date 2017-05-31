@@ -1,0 +1,11 @@
+flatpak install --user io.liri.Browser-origin io.liri.Browser/x86_64/master
+flatpak uninstall --user io.liri.Browser/x86_64/develop
+
+flatpak install --user io.liri.Text-origin io.liri.Text/x86_64/master
+flatpak uninstall --user io.liri.Text/x86_64/develop
+
+flatpak install --user io.liri.Files-origin io.liri.Files/x86_64/master
+flatpak uninstall --user io.liri.Files/x86_64/develop
+
+flatpak install --user io.liri.Calculator-origin io.liri.Calculator/x86_64/stable
+flatpak uninstall --user io.liri.Calculator/x86_64/develop
