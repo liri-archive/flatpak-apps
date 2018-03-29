@@ -1,4 +1,4 @@
-gpg-key: 71B9937D
+gpg-key: 7D98B067FFEFDAA5F8941D4CDFA98DBF970012EE
 sdk-version: master
 apps:
 - name: io.liri.Calculator
