@@ -20,7 +20,7 @@
             "buildsystem": "simple",
             "build-commands": [
                 "./qbs-configure",
-                "./qbs-build qbs.buildVariant:debug qbs.installRoot:/ qbs.installPrefix:app"
+                "./qbs-build qbs.buildVariant:debug modules.qbs.installRoot:/ modules.lirideployment.prefix:/app"
             ],
             "sources": [
                 {
