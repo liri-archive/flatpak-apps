@@ -13,3 +13,6 @@ apps:
 - name: io.liri.Files
   tag: develop
   version: master
+- name: io.liri.Terminal
+  tag: develop
+  version: master
